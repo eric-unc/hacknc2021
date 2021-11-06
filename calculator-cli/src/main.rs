@@ -1,3 +1,5 @@
+use calculator::calculate;
+
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, {}!", calculate("5").unwrap());
 }
