@@ -5,6 +5,7 @@ use calculator::calculate;
 
 fn main() {
     println!("Welcome to our calculator! You can put \"quit\" to quit.");
+
     loop {
         print!(">>> ");
         io::stdout().flush().expect("Failed to flush!");
