@@ -8,6 +8,7 @@ use util::Expr;
 use util::Expr::Number;
 use util::Expr::Operation;
 use util::Expr::Function;
+use util::Expr::Constant;
 use util::Expr::Error;
 use util::Operand;
 use util::Func;
@@ -32,7 +33,8 @@ fn calculate_expr(expr: &Expr) -> Result<f64, String> {
         Function(func, expr1) => {
             let result1 = calculate_expr(expr1)?;
             return evaluate_function(*func, result1)
-        }
+        },
+        Constant(constant) => Ok(evaluate_constant(*constant)),
         Error => {
             return Err(String::from("calculate error"))
         }
@@ -46,6 +48,13 @@ fn evaluate_operation(x1: f64, x2: f64, operand: Operand) -> f64 {
         Operand::Mul => x1 * x2,
         Operand::Div => x1 / x2,
         Operand::Power => x1.powf(x2),
+    }
+}
+
+fn evaluate_constant(constant: util::Constant) -> f64 {
+    match constant {
+        util::Constant::PI => std::f64::consts::PI,
+        util::Constant::E => std::f64::consts::E,
     }
 }
 
