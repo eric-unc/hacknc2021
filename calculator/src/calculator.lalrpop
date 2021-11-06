@@ -1,0 +1,34 @@
+use std::str::FromStr;
+use crate::util::{Expr, Operand};
+
+grammar;
+
+pub Expr: Box<Expr> = {
+    Expr OpOrder1 ExprOrder2 => Box::new(Expr::Operation(<>)),
+    ExprOrder2,
+};
+
+OpOrder1: Operand = {
+    "+" => Operand::Add,
+    "-" => Operand::Sub,
+};
+
+ExprOrder2: Box<Expr> = {
+    ExprOrder2 OpOrder2 Atom => Box::new(Expr::Operation(<>)),
+    Atom,
+};
+
+OpOrder2: Operand = {
+    "*" => Operand::Mul,
+    "/" => Operand::Div,
+};
+
+Atom: Box<Expr> = {
+    Num => Box::new(Expr::Number(<>)),
+    "(" <Expr> ")"
+};
+
+Num: f64 = {
+    r"[0-9]+(\.([0-9]+)?)?|\.([0-9]+)?" => f64::from_str(<>).unwrap()
+};
+
