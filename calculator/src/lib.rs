@@ -10,6 +10,7 @@ use util::Expr::Operation;
 use util::Expr::Error;
 use util::Operand;
 
+// calculate the result based on input string
 pub fn calculate(input: &str) -> Result<f64, String> {
     let expr = calculator::ExprParser::new()
         .parse(input)
