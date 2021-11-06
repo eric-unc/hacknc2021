@@ -44,7 +44,8 @@ fn evaluate_operation(x1: f64, x2: f64, operand: Operand) -> f64 {
         Operand::Add => x1 + x2,
         Operand::Sub => x1 - x2,
         Operand::Mul => x1 * x2,
-        Operand::Div => x1 / x2
+        Operand::Div => x1 / x2,
+        Operand::Power => x1.powf(x2),
     }
 }
 
@@ -88,7 +89,9 @@ mod tests {
         assert_eq!(2.0, calculate("2").unwrap());
         assert_eq!(4.0, calculate("2 + 2").unwrap());
         assert_eq!(6.0, calculate("2 * 3").unwrap());
+        assert_eq!(8.0, calculate("2 ^ 3").unwrap());
         assert_eq!(8.0, calculate("2 * 3 + 2").unwrap());
+        assert_eq!(10.0, calculate("2 * 3 + 2 ^ 2").unwrap());
 
         assert_eq!(2.0, calculate("sqrt(4)").unwrap());
         assert_eq!(5.0, calculate("sqrt(4) + 3").unwrap());

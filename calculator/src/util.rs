@@ -11,6 +11,7 @@ pub enum Operand {
     Div,
     Add,
     Sub,
+    Power,
 }
 
 #[derive(Copy, Clone)]

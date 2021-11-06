@@ -14,14 +14,23 @@ OpOrder1: Operand = {
 };
 
 ExprOrder2: Box<Expr> = {
-    ExprOrder2 OpOrder2 Group => Box::new(Expr::Operation(<>)),
-    Group,
+    ExprOrder2 OpOrder2 ExprOrder3 => Box::new(Expr::Operation(<>)),
+    ExprOrder3,
 };
 
 OpOrder2: Operand = {
     "*" => Operand::Mul,
     "/" => Operand::Div,
 };
+
+ExprOrder3: Box<Expr> = {
+    ExprOrder3 OpOrder3 Group => Box::new(Expr::Operation(<>)),
+    Group,
+};
+
+OpOrder3: Operand = {
+    "^" => Operand::Power,
+}
 
 Group: Box<Expr> = {
     Num => Box::new(Expr::Number(<>)),
