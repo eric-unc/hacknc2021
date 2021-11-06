@@ -31,6 +31,12 @@ Group: Box<Expr> = {
 
 Func: Func = {
     "sqrt" => Func::Sqrt,
+    "sin" => Func::Sin,
+    "cos" => Func::Cos,
+    "tan" => Func::Tan,
+    "abs" => Func::Abs,
+    "round" => Func::Round,
+    "factorial" => Func::Factorial,
 }
 
 Num: f64 = {

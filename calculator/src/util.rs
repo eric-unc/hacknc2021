@@ -16,4 +16,10 @@ pub enum Operand {
 #[derive(Copy, Clone)]
 pub enum Func {
     Sqrt,
+    Sin,
+    Cos,
+    Tan,
+    Abs,
+    Round,
+    Factorial,
 }

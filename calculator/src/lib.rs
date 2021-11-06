@@ -57,7 +57,26 @@ fn evaluate_function(func: Func, x: f64) -> Result<f64, String> {
             }
             Ok(result)
         }
+        Func::Sin => Ok(x.sin()),
+        Func::Cos => Ok(x.cos()),
+        Func::Tan => Ok(x.tan()),
+        Func::Abs => Ok(x.abs()),
+        Func::Round => Ok(x.round()),
+        Func::Factorial => {
+            if x.fract() != 0.0 {
+                return Err(String::from("factorial only operates on positive integers"))
+            }
+            return Ok(factorial(x))
+        },
     }
+}
+
+fn factorial(x: f64) -> f64 {
+    if x <= 1.0 {
+        return 1.0
+    }
+
+    factorial(x - 1.0) * x
 }
 
 #[cfg(test)]
@@ -72,6 +91,14 @@ mod tests {
         assert_eq!(8.0, calculate("2 * 3 + 2").unwrap());
 
         assert_eq!(2.0, calculate("sqrt(4)").unwrap());
+        assert_eq!(5.0, calculate("sqrt(4) + 3").unwrap());
+        assert_eq!(0.0, calculate("sin(0)").unwrap());
+        assert_eq!(1.0, calculate("cos(0)").unwrap());
+        assert_eq!(0.0, calculate("tan(0)").unwrap());
+        assert_eq!(0.0, calculate("abs(-0)").unwrap());
+        assert_eq!(1.0, calculate("abs(-1)").unwrap());
+        assert_eq!(1.0, calculate("round(1.4)").unwrap());
+        assert_eq!(120.0, calculate("factorial(5)").unwrap());
 
         assert!(calculate("error").is_err())
     }
