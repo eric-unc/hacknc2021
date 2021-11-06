@@ -1,0 +1,7 @@
+[workspace]
+members = [
+	"calculator",
+	"calculator-cli",
+	"calculator-gui"
+]
+
