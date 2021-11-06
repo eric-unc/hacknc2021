@@ -12,11 +12,10 @@ use util::Operand;
 
 // calculate the result based on input string
 pub fn calculate(input: &str) -> Result<f64, String> {
-    let expr = calculator::ExprParser::new()
-        .parse(input)
-        .unwrap();
-
-    calculate_expr(&*expr)
+    match calculator::ExprParser::new().parse(input) {
+        Ok(v) => calculate_expr(&*v),
+        Err(_) => Err(String::from("parsing error"))
+    }
 }
 
 // recursively evaluate each expression
@@ -24,8 +23,8 @@ fn calculate_expr(expr: &Expr) -> Result<f64, String> {
     match &*expr {
         Number(n) => return Ok(*n),
         Operation(expr1, operand, expr2) => {
-            let result1 = calculate_expr(expr1).unwrap();
-            let result2 = calculate_expr(expr2).unwrap();
+            let result1 = calculate_expr(expr1)?;
+            let result2 = calculate_expr(expr2)?;
             return Ok(evaluate_operation(result1, result2, *operand));
         }
         Error => {
@@ -53,5 +52,7 @@ mod tests {
         assert_eq!(4.0, calculate("2 + 2").unwrap());
         assert_eq!(6.0, calculate("2 * 3").unwrap());
         assert_eq!(8.0, calculate("2 * 3 + 2").unwrap());
+
+        assert!(calculate("error").is_err())
     }
 }
