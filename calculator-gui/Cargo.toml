@@ -5,3 +5,4 @@ edition = "2018"
 
 [dependencies]
 calculator = { path = "../calculator" }
+eframe = "0.15.0"
