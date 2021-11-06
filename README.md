@@ -14,6 +14,6 @@ TODO
   * [egui](https://github.com/emilk/egui)
 
 # Authors
-* Aneesh Tarun
+* Aneesh Murthi
 * Eric Schneider
 * Chongyi Zheng
