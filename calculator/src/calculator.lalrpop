@@ -1,5 +1,5 @@
 use std::str::FromStr;
-use crate::util::{Expr, Operand};
+use crate::util::{Expr, Func, Operand};
 
 grammar;
 
@@ -14,8 +14,8 @@ OpOrder1: Operand = {
 };
 
 ExprOrder2: Box<Expr> = {
-    ExprOrder2 OpOrder2 Atom => Box::new(Expr::Operation(<>)),
-    Atom,
+    ExprOrder2 OpOrder2 ExprOrder3 => Box::new(Expr::Operation(<>)),
+    ExprOrder3,
 };
 
 OpOrder2: Operand = {
@@ -23,10 +23,30 @@ OpOrder2: Operand = {
     "/" => Operand::Div,
 };
 
-Atom: Box<Expr> = {
+ExprOrder3: Box<Expr> = {
+    ExprOrder3 OpOrder3 Group => Box::new(Expr::Operation(<>)),
+    Group,
+};
+
+OpOrder3: Operand = {
+    "^" => Operand::Power,
+}
+
+Group: Box<Expr> = {
     Num => Box::new(Expr::Number(<>)),
+    <Func> "(" <Expr> ")" => Box::new(Expr::Function(<>)),
     "(" <Expr> ")"
 };
+
+Func: Func = {
+    "sqrt" => Func::Sqrt,
+    "sin" => Func::Sin,
+    "cos" => Func::Cos,
+    "tan" => Func::Tan,
+    "abs" => Func::Abs,
+    "round" => Func::Round,
+    "factorial" => Func::Factorial,
+}
 
 Num: f64 = {
     r"\-?[0-9]+(\.([0-9]+)?)?|\-?\.([0-9]+)?" => f64::from_str(<>).unwrap()
