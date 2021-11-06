@@ -2,6 +2,7 @@ pub enum Expr {
     Number(f64),
     Operation(Box<Expr>, Operand, Box<Expr>),
     Function(Func, Box<Expr>),
+    Constant(Constant),
     Error,
 }
 
@@ -23,4 +24,10 @@ pub enum Func {
     Abs,
     Round,
     Factorial,
+}
+
+#[derive(Copy, Clone)]
+pub enum Constant {
+    PI,
+    E,
 }
