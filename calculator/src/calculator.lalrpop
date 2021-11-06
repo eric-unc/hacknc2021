@@ -21,6 +21,7 @@ ExprOrder2: Box<Expr> = {
 OpOrder2: Operand = {
     "*" => Operand::Mul,
     "/" => Operand::Div,
+    "%" => Operand::Rem,
 };
 
 ExprOrder3: Box<Expr> = {

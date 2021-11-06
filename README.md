@@ -14,6 +14,7 @@ There are (supposed to be two interfaces with this project): the command line in
   * `-` subtraction
   * `*` multiplication
   * `/` division
+  * `%` remainder/mod
   * `^` power
 
 * Functions

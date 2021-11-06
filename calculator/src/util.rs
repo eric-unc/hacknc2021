@@ -10,6 +10,7 @@ pub enum Expr {
 pub enum Operand {
     Mul,
     Div,
+    Rem,
     Add,
     Sub,
     Power,

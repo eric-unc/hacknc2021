@@ -50,7 +50,7 @@ impl epi::App for CalculatorApp {
 				Err(e) => ui.colored_label(Color32::from_rgb(255, 0, 0), format!("{}", e))
 			};
 
-			ui.label("You can use these operators: +, -, *, /, ^.");
+			ui.label("You can use these operators: +, -, *, /, %, ^.");
 			ui.label("These functions: sqrt, sin, cos, tan, abs, round, factorial.");
 			ui.label("And these constants: pi, e.")
 		});

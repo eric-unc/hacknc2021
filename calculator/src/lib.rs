@@ -47,6 +47,7 @@ fn evaluate_operation(x1: f64, x2: f64, operand: Operand) -> f64 {
         Operand::Sub => x1 - x2,
         Operand::Mul => x1 * x2,
         Operand::Div => x1 / x2,
+        Operand::Rem => x1 % x2,
         Operand::Power => x1.powf(x2),
     }
 }
