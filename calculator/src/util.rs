@@ -1,6 +1,7 @@
 pub enum Expr {
     Number(f64),
     Operation(Box<Expr>, Operand, Box<Expr>),
+    Function(Func, Box<Expr>),
     Error,
 }
 
@@ -10,4 +11,9 @@ pub enum Operand {
     Div,
     Add,
     Sub,
+}
+
+#[derive(Copy, Clone)]
+pub enum Func {
+    Sqrt,
 }
