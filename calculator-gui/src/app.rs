@@ -1,16 +1,17 @@
 use eframe::{egui, epi};
+use eframe::egui::{Color32, Key};
 use calculator::calculate;
 
 pub struct CalculatorApp {
 	expression: String,
-	output: String
+	output: Result<f64, String>
 }
 
 impl Default for CalculatorApp {
 	fn default() -> Self {
 		Self {
 			expression: "0".to_owned(),
-			output: "0".to_owned()
+			output: Ok(0.0)
 		}
 	}
 }
@@ -36,18 +37,22 @@ impl epi::App for CalculatorApp {
 			ui.horizontal(|ui| {
 				ui.text_edit_singleline(expression);
 				if ui.button("Evaluate").clicked() {
-					match calculate(expression) {
-						Ok(n) => {
-							*output = n.to_string();
-						}
-						Err(e) => {
-							*output = e;
-						}
-					}
+					*output =  calculate(expression);
 				}
 			});
 
-			ui.label(format!("= {}", output));
+			if ctx.input().keys_down.contains(&Key::Enter) {
+				*output =  calculate(expression);
+			}
+
+			match output {
+				Ok(n) => ui.label(format!("= {}", n)),
+				Err(e) => ui.colored_label(Color32::from_rgb(255, 0, 0), format!("{}", e))
+			};
+
+			ui.label("You can use these operators: +, -, *, /, ^.");
+			ui.label("These functions: sqrt, sin, cos, tan, abs, round, factorial.");
+			ui.label("And these constants: pi, e.")
 		});
 	}
 
