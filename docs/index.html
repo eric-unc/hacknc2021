@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>The Calculator</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+
+  <div class="main">
+    <div class="calculator">
+      <h1>Calculator</h1>
+
+      <div class="input-group">
+        <p>Put your expression here:</p>
+        <input id="expression-input" type="text" value="cos(0)" />
+      </div>
+
+      <div class="result-group">
+        =
+        <span id="output" class="result"></span>
+      </div>
+
+      <div class="description">
+        <p>You can use these operators: +, -, *, /, %, ^.</p>
+        <p>These functions: sqrt, sin, cos, tan, abs, round, factorial.</p>
+        <p>And these constants: pi, e.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script src="./bootstrap.js"></script>
+</body>
+
+</html>
