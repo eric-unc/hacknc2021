@@ -2,7 +2,7 @@
 
 It's a calculator, perhaps somewhat similar to `bc` on Unix. The hope is to have it be accessible on the command line, through a GUI interface, and via the web. 
 
-Checkout online at [HERE](https://eric-unc.tech/hacknc2021/).
+Check out online at [HERE](https://eric-unc.tech/hacknc2021/).
 
 
 ## Usage
