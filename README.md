@@ -1,11 +1,13 @@
 # hacknc2021
 
-It's a calculator, perhaps somewhat similar to `bc` on Unix. The hope is to have it be accessible on both the command line and through a GUI interface.
+It's a calculator, perhaps somewhat similar to `bc` on Unix. The hope is to have it be accessible on the command line, through a GUI interface, and via the web. 
+
+Checkout online at [HERE](https://eric-unc.tech/hacknc2021/).
 
 
 ## Usage
 
-There are (supposed to be two interfaces with this project): the command line interface and the GUI.
+There are (supposed to be three interfaces with this project): the command line interface, the GUI, and the [web](https://eric-unc.tech/hacknc2021/).
 
 ## Supported syntax
 
